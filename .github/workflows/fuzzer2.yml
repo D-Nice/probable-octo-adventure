@@ -29,13 +29,15 @@ jobs:
         #echo never > /sys/kernel/mm/transparent_hugepage/enabled
         ping google.ca > /tmp/ping.out &
         #sleep 120
-    - if: github.base_ref == 'refs/heads/master'
-      name: wait 4 hours for master
-      run: sleep 16400
-    - name: wait half hour
-      run: ping -c 60 -t 1 localhost
+        ping -c 60 -t 1 localhost
+#    - if: github.base_ref == 'refs/heads/master'
+#      name: wait 4 hours for master
+#      run: sleep 16400
+    - run: ping -c 60 -t 1 localhost
     - name: close fuzzer
-      run: cat /tmp/ping.out
+      run: |
+        pkill ping
+        cat /tmp/ping.out
       #    - name: list hangs (below 16k)
       #      run: find tests/fuzzer/out-${{ matrix.fuzzer}}/hangs -type f -size -16384c -exec echo {} \; -exec curl -F data=@\"{}\" https://ipfs.infura.io:5001/api/v0/add \; -exec xxd {} \;
       #    - name: list hangs (16k & above)
