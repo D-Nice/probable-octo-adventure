@@ -1,0 +1,22 @@
+name: another_ci
+on:
+  - pull_request
+  - push
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu
+      #options: --privileged
+    steps:
+    - uses: actions/checkout@v1
+    - name: forked job
+      run: |
+        #apk add --no-cache afl util-linux
+        #sysctl -w kernel.core_pattern=core
+        #sysctl -w kernel.sched_child_runs_first=1
+        #echo never > /sys/kernel/mm/transparent_hugepage/enabled
+        ping google.ca > /tmp/ping.out &
+        #sleep 120
+    - name: this is never reached
+      run: echo hi
