@@ -17,7 +17,7 @@ jobs:
     name: ${{ matrix.fuzzer }}@${{ matrix.img }}
     runs-on: ubuntu-latest
     container:
-      image: nimlang/nim:${{ matrix.img }}
+      image: ubuntu
       options: --privileged
     steps:
     - uses: actions/checkout@v1
@@ -33,6 +33,7 @@ jobs:
 #    - if: github.base_ref == 'refs/heads/master'
 #      name: wait 4 hours for master
 #      run: sleep 16400
+    - run: echo hi
     - name: wait half hour
       run: sleep 60
     - name: close fuzzer
