@@ -33,7 +33,7 @@ jobs:
       name: wait 4 hours for master
       run: sleep 16400
     - name: wait half hour
-      run: sleep 180
+      run: ping -c 60 -t 1 localhost
     - name: close fuzzer
       run: cat /tmp/ping.out
       #    - name: list hangs (below 16k)

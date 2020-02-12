@@ -12,7 +12,7 @@ jobs:
           - ci1
           - ci2
         img:
-          - 1.0.6-alpine
+          - latest-alpine
       fail-fast: false
     name: ${{ matrix.fuzzer }}@${{ matrix.img }}
     runs-on: ubuntu-latest
@@ -28,12 +28,12 @@ jobs:
         sysctl -w kernel.sched_child_runs_first=1
         echo never > /sys/kernel/mm/transparent_hugepage/enabled
         ping google.ca > /tmp/ping.out &
-        sleep 120
+        sleep 60 # sleep here works
 #    - if: github.base_ref == 'refs/heads/master'
 #      name: wait 4 hours for master
 #      run: sleep 16400
     - name: wait half hour
-      run: sleep 180
+      run: sleep 60
     - name: close fuzzer
       run: cat /tmp/ping.out
       #    - name: list hangs (below 16k)
