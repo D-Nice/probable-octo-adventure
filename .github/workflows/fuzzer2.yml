@@ -33,6 +33,11 @@ jobs:
 #    - if: github.base_ref == 'refs/heads/master'
 #      name: wait 4 hours for master
 #      run: sleep 16400
+    - run: echo ayyyyy
+    - run: |
+        echo ayyyyy
+        sleep 5
+        echo ayyyyy
     - run: ping -c 60 -t 1 localhost
     - name: close fuzzer
       run: |
