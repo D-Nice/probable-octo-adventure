@@ -11,7 +11,8 @@ jobs:
     - name: forked job
       run: |
         apt update && apt install -y iputils-ping
-        #ping google.ca > /tmp/ping.out &
-    - run: ping google.ca > /tmp/ping.out &
+        ping google.ca > /tmp/ping.out &
+        echo this works fine
+        sleep 60 && pkill ping &
     - name: this is never reached
       run: echo hi
